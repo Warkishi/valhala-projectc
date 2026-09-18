@@ -1,7 +1,7 @@
 extends Control
 
-var hero: Dictionary
-var phase := 0.0
+var hero: Dictionary = {}
+var phase: float = 0.0
 var base_color := Color.WHITE
 
 func set_character(value: Dictionary) -> void:
