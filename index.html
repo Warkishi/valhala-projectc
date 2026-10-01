@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valhala Projectc</title>
+    <meta
+      name="description"
+      content="Prototype web de gacha RPG de Valhala Projectc, compatible GitHub Pages."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="title-wrap">
+          <p class="eyebrow">Chroniques fantastiques</p>
+          <h1>✦ VALHALA PROJECTC ✦</h1>
+        </div>
+        <div class="gold-pill">✦ Fragments : <span id="goldValue">1000</span></div>
+      </header>
+
+      <main class="content">
+        <section class="summon-panel">
+          <h2>Autel des invocations</h2>
+          <p id="probabilityText" class="probability-text"></p>
+
+          <div class="actions">
+            <button id="summonOneBtn" class="summon-btn summon-one">
+              INVOCATION x1<br />
+              <span>100 ✦</span>
+            </button>
+            <button id="summonTenBtn" class="summon-btn summon-ten">
+              INVOCATION x10<br />
+              <span>900 ✦</span>
+            </button>
+          </div>
+
+          <div id="resultsLabel" class="results-label"></div>
+        </section>
+
+        <section class="inventory-panel">
+          <h2>Héros invoqués</h2>
+          <div id="inventoryGrid" class="inventory-grid" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
