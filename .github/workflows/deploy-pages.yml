@@ -1,4 +1,4 @@
-name: Deploy Godot Web build to GitHub Pages
+name: Deploy static site to GitHub Pages
 
 on:
   push:
@@ -15,39 +15,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Install Godot
-        uses: chickensoft-games/setup-godot@v2
-        with:
-          version: 4.2.2
-          use-dotnet: false
-          include-templates: true
-
-      - name: Build Web export
-        run: |
-          mkdir -p build/web
-          godot --headless --path . --editor --quit
-          godot --headless --path . --export-release "Web" build/web/index.html
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: build/web
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
-    needs: build
-
     steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
